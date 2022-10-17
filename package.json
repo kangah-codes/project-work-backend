@@ -10,7 +10,7 @@
     "dev": "tsnd ./src/server.ts"
   },
   "engines": {
-    "node": "16.13.0"
+    "node": "18.x"
   },
   "keywords": [],
   "author": "",
