@@ -1,4 +1,5 @@
 import { NextFunction } from "express";
+import { md5 } from "./md5";
 
 export function APIError(
 	error: string | Error | any,
@@ -42,3 +43,18 @@ export const errorHandler = (
 	// @ts-ignore
 	res.status(err.status).send(err.message);
 };
+
+export function generatePrivateKeyFromSeed(id: string): string {
+	const seed = id
+		.split("")
+		.map((char: string) => {
+			return char.charCodeAt(0);
+		})
+		.reduce((acc: number, curr: number) => {
+			return acc + curr;
+		}, 0);
+
+	const randomStringHash = md5(seed.toString());
+
+	return randomStringHash;
+}

@@ -8,6 +8,7 @@ import Parse from "parse/node";
 import express, { Application } from "express";
 import { errorHandler } from "./services/Helpers";
 import { ParseRoute } from "./routes/ParseRoute";
+import { API } from "./routes/api";
 
 const app: Application = express();
 const port = process.env.PORT || 3200;
@@ -21,7 +22,9 @@ app.get("/test", (_request, response) => {
 });
 
 ParseRoute.init(app);
+app.use("/api", API);
 
+// @ts-ignore
 app.use(errorHandler);
 app.listen(port, () => {
 	debugLog(`Server running at http://localhost:${port}`);

@@ -5,6 +5,10 @@ import ParseDashboard from "parse-dashboard";
 import Parse from "parse/node";
 import { User } from "../models/User";
 import parseCache from "parse-cache";
+import { Admin } from "../models/Admin";
+import { Verifier } from "../models/Verifier";
+import { Student } from "../models/Student";
+import { CardVerification } from "../models/CardVerification";
 
 export class ParseRoute {
 	static app: Application;
@@ -14,10 +18,11 @@ export class ParseRoute {
 
 		// parse setup
 		const api = new ParseServer({
-			databaseURI: process.env.DATABASE_URI, // Connection string for your MongoDB database
+			databaseURI:
+				"mongodb+srv://webtech:webtech@cluster0.etoko.mongodb.net/?retryWrites=true&w=majority", // Connection string for your MongoDB database
 			cloud: path.join(__dirname, "..", "cloud", "cloud"), // Absolute path to your Cloud Code
-			appId: process.env.APPLICATION_ID,
-			masterKey: process.env.MASTER_KEY, // Keep this key secret!
+			appId: "finalProject",
+			masterKey: "masterKey", // Keep this key secret!
 			serverURL: process.env.SERVER_URL || "http://localhost:3200/parse", // Don't forget to change to https if needed
 		});
 
@@ -29,15 +34,15 @@ export class ParseRoute {
 						serverURL:
 							process.env.SERVER_URL ||
 							"http://localhost:3200/parse",
-						appId: process.env.APPLICATION_ID,
-						masterKey: process.env.MASTER_KEY,
-						appName: `APP NAME`,
+						appId: "finalProject",
+						masterKey: "masterKey",
+						appName: `UG eID`,
 					},
 				],
 				users: [
 					{
-						user: "TEST USER",
-						pass: "PASSWORD", // do not deploy with this password
+						user: "admin",
+						pass: "password", // do not deploy with this password
 					},
 				],
 			},
@@ -46,7 +51,7 @@ export class ParseRoute {
 
 		ParseRoute.parseSetup();
 		ParseRoute.app.use("/dashboard", dashboard);
-		ParseRoute.app.use(process.env.PARSE_MOUNT || "/parse", api.app);
+		ParseRoute.app.use("/parse", api.app);
 	}
 
 	static parseSetup() {
@@ -64,5 +69,9 @@ export class ParseRoute {
 			process.env.SERVER_URL || "http://localhost:3200/parse";
 
 		Parse.User.registerSubclass("_User", User);
+		Parse.Object.registerSubclass("Admin", Admin);
+		Parse.Object.registerSubclass("Verifier", Verifier);
+		Parse.Object.registerSubclass("Student", Student);
+		Parse.Object.registerSubclass("CardVerification", CardVerification);
 	}
 }

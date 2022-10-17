@@ -12,6 +12,7 @@ export const validateSessionToken = async (
 		const session = await new Parse.Query("_Session")
 			// @ts-ignore
 			.cache(360)
+			// @ts-ignore
 			.equalTo("sessionToken", req.header("sessionToken"))
 			.first({ useMasterKey: true });
 
@@ -26,7 +27,7 @@ export const validateSessionToken = async (
 			.catch((e) => {
 				throw APIError(`Invalid session token: ${e}`, 403);
 			});
-
+		// @ts-ignore
 		req.body.user = user;
 		next();
 	} catch (e) {
