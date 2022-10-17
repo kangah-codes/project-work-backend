@@ -23,7 +23,9 @@ export class ParseRoute {
 			// cloud: path.join(__dirname, "..", "cloud", "cloud.js"), // Absolute path to your Cloud Code
 			appId: "finalProject",
 			masterKey: "masterKey", // Keep this key secret!
-			serverURL: process.env.SERVER_URL || "http://localhost:3200/parse", // Don't forget to change to https if needed
+			serverURL:
+				"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
+				"http://localhost:3200/parse", // Don't forget to change to https if needed
 		});
 
 		const dashboard = new ParseDashboard(
@@ -32,7 +34,7 @@ export class ParseRoute {
 				apps: [
 					{
 						serverURL:
-							process.env.SERVER_URL ||
+							"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
 							"http://localhost:3200/parse",
 						appId: "finalProject",
 						masterKey: "masterKey",
@@ -63,7 +65,8 @@ export class ParseRoute {
 		}); // {engine: 'memory', count: 1000} are default values and are optional
 		Parse.masterKey = "masterKey";
 		Parse.serverURL =
-			process.env.SERVER_URL || "http://localhost:3200/parse";
+			"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
+			"http://localhost:3200/parse";
 
 		Parse.User.registerSubclass("_User", User);
 		Parse.Object.registerSubclass("Admin", Admin);
