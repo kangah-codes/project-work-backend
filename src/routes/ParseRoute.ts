@@ -20,7 +20,7 @@ export class ParseRoute {
 		const api = new ParseServer({
 			databaseURI:
 				"mongodb+srv://webtech:webtech@cluster0.etoko.mongodb.net/?retryWrites=true&w=majority", // Connection string for your MongoDB database
-			cloud: path.join(__dirname, "..", "cloud", "cloud"), // Absolute path to your Cloud Code
+			cloud: "./cloud/cloud", // Absolute path to your Cloud Code
 			appId: "finalProject",
 			masterKey: "masterKey", // Keep this key secret!
 			serverURL: process.env.SERVER_URL || "http://localhost:3200/parse", // Don't forget to change to https if needed
