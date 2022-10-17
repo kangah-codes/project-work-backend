@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { Request, Response, NextFunction } from "express";
-import { APIError } from "../src/services/Helpers";
+import { APIError } from "../services/Helpers";
 
 export async function testValidation(
 	request: Request,

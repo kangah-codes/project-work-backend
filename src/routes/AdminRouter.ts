@@ -1,6 +1,6 @@
 import { Router, Application } from "express";
-import { validateCreateStudent } from "../../validation/TestValidation";
 import { AdminController } from "../controllers/AdminController";
+import { validateCreateStudent } from "../validation/TestValidation";
 
 export class AdminRouter {
 	static init(app: Application) {
