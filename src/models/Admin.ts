@@ -5,12 +5,16 @@ export class Admin extends Parse.Object {
 		super("Admin", attributes);
 	}
 
-	get user(): User {
-		return this.get("user");
+	static get query(): Parse.Query<Admin> {
+		return new Parse.Query(Admin);
 	}
 
-	set user(value: User) {
-		this.set("user", value);
+	get userId(): string {
+		return this.get("userId");
+	}
+
+	set userId(value: string) {
+		this.set("userId", value);
 	}
 
 	get fullName(): string {

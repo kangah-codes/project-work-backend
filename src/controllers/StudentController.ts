@@ -45,7 +45,3 @@ export class StudentController {
 		}
 	}
 }
-
-export function hello() {
-    return "THIS"
-}

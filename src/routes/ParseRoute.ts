@@ -24,8 +24,9 @@ export class ParseRoute {
 			appId: "finalProject",
 			masterKey: "masterKey", // Keep this key secret!
 			serverURL:
-				"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
-				"http://localhost:3200/parse", // Don't forget to change to https if needed
+				process.env.NODE_ENV !== "production"
+					? "http://localhost:3200/parse"
+					: "https://final-year-project-api-ug-eid.herokuapp.com/parse",
 		});
 
 		const dashboard = new ParseDashboard(
@@ -34,8 +35,9 @@ export class ParseRoute {
 				apps: [
 					{
 						serverURL:
-							"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
-							"http://localhost:3200/parse",
+							process.env.NODE_ENV !== "production"
+								? "http://localhost:3200/parse"
+								: "https://final-year-project-api-ug-eid.herokuapp.com/parse",
 						appId: "finalProject",
 						masterKey: "masterKey",
 						appName: `UG eID`,
@@ -65,8 +67,9 @@ export class ParseRoute {
 		}); // {engine: 'memory', count: 1000} are default values and are optional
 		Parse.masterKey = "masterKey";
 		Parse.serverURL =
-			"https://final-year-project-api-ug-eid.herokuapp.com/parse" ||
-			"http://localhost:3200/parse";
+			process.env.NODE_ENV !== "production"
+				? "http://localhost:3200/parse"
+				: "https://final-year-project-api-ug-eid.herokuapp.com/parse";
 
 		Parse.User.registerSubclass("_User", User);
 		Parse.Object.registerSubclass("Admin", Admin);

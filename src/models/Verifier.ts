@@ -5,12 +5,16 @@ export class Verifier extends Parse.Object {
 		super("Verifier", attributes);
 	}
 
-	get user(): User {
-		return this.get("user");
+	static get query(): Parse.Query<Verifier> {
+		return new Parse.Query(Verifier);
 	}
 
-	set user(value: User) {
-		this.set("user", value);
+	get userId(): string {
+		return this.get("userId");
+	}
+
+	set userId(value: string) {
+		this.set("userId", value);
 	}
 
 	get fullName(): string {

@@ -5,6 +5,10 @@ export class Student extends Parse.Object {
 		super("Student", attributes);
 	}
 
+	static get query(): Parse.Query<Student> {
+		return new Parse.Query(Student);
+	}
+
 	get user(): User {
 		return this.get("user");
 	}
@@ -131,5 +135,17 @@ export class Student extends Parse.Object {
 
 	set isActive(value: boolean) {
 		this.set("isActive", value);
+	}
+
+	get userId(): string {
+		return this.get("userId");
+	}
+
+	set userId(value: string) {
+		this.set("userId", value);
+	}
+
+	static async login({ username, password }) {
+		return await User.logIn(username, password);
 	}
 }

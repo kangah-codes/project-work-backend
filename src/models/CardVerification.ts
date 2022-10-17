@@ -5,12 +5,16 @@ export class CardVerification extends Parse.Object {
 		super("CardVerification", attributes);
 	}
 
-	get student(): Student {
-		return this.get("student");
+	static get query(): Parse.Query<CardVerification> {
+		return new Parse.Query(CardVerification);
 	}
 
-	set student(value: Student) {
-		this.set("student", value);
+	get studentId(): string {
+		return this.get("studentId");
+	}
+
+	set studentId(value: string) {
+		this.set("studentId", value);
 	}
 
 	get purpose(): string {

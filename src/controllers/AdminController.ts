@@ -76,17 +76,21 @@ export class AdminController {
 			user.setPassword("test");
 			await user.save(request.body);
 
+			console.log(user);
+
 			const student = new Student();
-			student.user = user;
 			await student.save({
 				...request.body,
+				userId: user.id,
 				isActive: true,
 				privateKey: generatePrivateKeyFromSeed(request.body.studentId),
-				blockId: lastStudent.blockId + 1,
-				previousBlockHash: lastStudent.blockHash,
-				blockHash: generatePrivateKeyFromSeed(
-					`${lastStudent.blockId} 1 ${lastStudent.blockHash}`
-				),
+				blockId: lastStudent ? lastStudent.blockId + 1 : 0,
+				previousBlockHash: lastStudent ? lastStudent.blockHash : null,
+				blockHash: lastStudent
+					? generatePrivateKeyFromSeed(
+							`${lastStudent.blockId} 1 ${lastStudent.blockHash}`
+					  )
+					: "0x000000",
 				size: 1,
 				timestamp: new Date().getTime(),
 			});
