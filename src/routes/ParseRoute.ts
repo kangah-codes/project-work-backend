@@ -55,16 +55,13 @@ export class ParseRoute {
 	}
 
 	static parseSetup() {
-		Parse.initialize(
-			process.env.APPLICATION_ID as string,
-			process.env.MASTER_KEY
-		);
+		Parse.initialize("finalProject", "masterKey");
 		// parse caching queries
-		parseCache(Parse, process.env.APPLICATION_ID, {
+		parseCache(Parse, "finalProject", {
 			engine: "memory",
 			count: 1000,
 		}); // {engine: 'memory', count: 1000} are default values and are optional
-		Parse.masterKey = process.env.MASTER_KEY;
+		Parse.masterKey = "masterKey";
 		Parse.serverURL =
 			process.env.SERVER_URL || "http://localhost:3200/parse";
 
